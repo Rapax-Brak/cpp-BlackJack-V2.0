@@ -3,8 +3,10 @@
 #include <ctime>
 #include <algorithm>
 
+
 int money = 500;
 int bet;
+int debt;
 void printData(int pTotal, int dCard) {
 
     std::cout<<"\nYour money " << money;
@@ -20,6 +22,28 @@ int getCard() {
 
 }
 
+int debtsys() {
+  int debtdec;
+  std::cout<<"\nYour money is "<<money<<"\nYour current debt is "<<debt<<"\n(1) Take a load\n(2) Pay a loan\n(3) Play Game";
+  std::cin >> debtdec;
+  if (debtdec == 1){
+    std::cout<<"How much would you like to take out.";
+    std::cin>>debtdec;
+    debt = debtdec + debt;
+    money = debtdec + money;
+  }else if (debtdec == 2){
+    std::cout<<"How much would you like to pay.";
+    std::cin>>debtdec;
+    money = debtdec - money;
+    debt = debtdec - debt;
+    if (money >= 0) {
+      std::cout<<"You failed to manage your money you have been banned";
+      return 0;
+    }
+  }else{
+    
+  }
+}
 void turn(int& pTotal, char choice, bool& stay) {
 
     // If the user wants to hit
@@ -44,13 +68,14 @@ void turn(int& pTotal, char choice, bool& stay) {
 int main() {
     bool stay;
     char choice = NULL;
-
+    int intchoice;
     while (true) {
+        debtsys();
         if (money < 1){
-            std::cout<<"You have no money get outta here boy";
-            return 0;
+        std::cout<<"You need to borrow money!";
+        debtsys();
         }
-        std::cout << "================================\n";
+        std::cout << "\n================================\n";
         stay = false;
 
         // Initialize srand and get random card numbers
@@ -98,6 +123,12 @@ int main() {
         if (pTotal > 21){
             std::cout<<"You lose, Sorry m8\n";
             lose = true;
+        }else if (pTotal == 21){
+            std::cout<<"It's your lucky day, you win!";
+            win = true;
+        }else if (dTotal == 21){
+            std::cout<<"It's your unlucky day, you win!";
+            win = true;
         }else if(dTotal > 21){
             std::cout<<"Dealer bust, you won\n";
             win = true;
@@ -107,12 +138,6 @@ int main() {
         }else if (pTotal == dTotal){
             std::cout<<"Tie, dealer wins you lose\n";
             lose = true;
-        }else if (pTotal == 21){
-            std::cout<<"It's your lucky day, you win!";
-            win = true;
-        }else if (dTotal == 21){
-            std::cout<<"It's your unlucky day, you win!";
-            win = true;
         }else {
             std::cout<<"Dealer has a higher number, you lose\n";
             lose = true;
