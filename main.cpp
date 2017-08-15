@@ -144,6 +144,8 @@ int main() {
         }
         if (win){
             money += bet*2;
+        }else {
+          money = money;
         }
     }
 
