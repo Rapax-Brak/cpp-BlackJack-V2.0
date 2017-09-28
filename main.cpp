@@ -127,8 +127,8 @@ int main() {
             std::cout<<"It's your lucky day, you win!";
             win = true;
         }else if (dTotal == 21){
-            std::cout<<"It's your unlucky day, you win!";
-            win = true;
+            std::cout<<"It's your unlucky day, you lose!";
+            lose = true;
         }else if(dTotal > 21){
             std::cout<<"Dealer bust, you won\n";
             win = true;
@@ -144,8 +144,12 @@ int main() {
         }
         if (win){
             money += bet*2;
+            win = false;
+            lose = false;
         }else {
           money = money;
+          win = false;
+          lose = false;
         }
     }
 
