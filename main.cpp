@@ -69,6 +69,14 @@ int main() {
     bool stay;
     char choice = NULL;
     int intchoice;
+    int dif;
+    bool hard;
+    std::cout<<"(1) Easy Mode\n(2) Hard Mode\n";
+    std::cin >> dif;
+    switch (dif) {
+      case 1: hard = false; break;
+      case 2: hard = true; break;
+      }
     while (true) {
         debtsys();
         if (money < 1){
@@ -108,11 +116,18 @@ int main() {
 
         // Dealer's turn
         while (dTotal <= 21 && !stay) {
-
-            if (dTotal >= 17)
+            if (hard){
+              if (dTotal >= 17 && dTotal > pTotal)
+                  stay = true;
+              else
+                  dTotal += getCard();
+            }else{
+              if (dTotal >= 17){
                 stay = true;
-            else
+              }else {
                 dTotal += getCard();
+              }
+            }
 
         }
 
