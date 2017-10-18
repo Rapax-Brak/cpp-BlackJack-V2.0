@@ -99,7 +99,6 @@ int main() {
         if (moneyp < 0) {
           std::cout<<"You cannot afford this your bet has been changed to "<< money <<"\n";
           bet = money;
-          debtsys();
         }
         money -= bet;
 
