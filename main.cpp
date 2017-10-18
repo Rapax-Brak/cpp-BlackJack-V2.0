@@ -95,6 +95,12 @@ int main() {
         std::cout<<money;
         std::cout<<"$\n";
         std::cin >> bet;
+        int moneyp= money - bet;
+        if (moneyp < 0) {
+          std::cout<<"You cannot afford this your bet has been changed to "<< money <<"\n";
+          bet = money;
+          debtsys();
+        }
         money -= bet;
 
 
@@ -128,7 +134,6 @@ int main() {
                 dTotal += getCard();
               }
             }
-
         }
 
         // Display winner
