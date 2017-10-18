@@ -142,10 +142,10 @@ int main() {
         if (pTotal > 21){
             std::cout<<"You lose, Sorry m8\n";
             lose = true;
-        }else if (pTotal == 21){
+        }else if (pTotal == 21 && dTotal != 21){
             std::cout<<"It's your lucky day, you win!";
             win = true;
-        }else if (dTotal == 21){
+        }else if (dTotal == 21 && pTotal != 21){
             std::cout<<"It's your unlucky day, you lose!";
             lose = true;
         }else if(dTotal > 21){
@@ -157,7 +157,10 @@ int main() {
         }else if (pTotal == dTotal){
             std::cout<<"Tie, dealer wins you lose\n";
             lose = true;
-        }else {
+        }else if (pTotal == 21 && dTotal == 21){
+            std::cout<<"Tie, dealer wins you lose\n";
+            lose =true;
+          }else {
             std::cout<<"Dealer has a higher number, you lose\n";
             lose = true;
         }
